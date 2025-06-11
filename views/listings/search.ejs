@@ -1,0 +1,43 @@
+<% layout("/layouts/boilerplate") -%>
+
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7"
+  crossorigin="anonymous"
+/>
+
+<div class="main mt-2 mb-3">
+    <div class="row detail mt-4">
+        <div class="col-8 offset-3">
+          <h3><%= search[0].propertyname %></h3>
+        </div>
+      
+        <div class="card col-6 offset-3 show-card listing-card">
+          <img
+            src="<%= (search[0].image.url || search[0].image) %>"
+            class="card-img-top show-img"
+            alt="listing-image"
+          />
+          <div class="card-body col show-card">
+            <p class="card-text">
+              <b>Detail:</b> <%= search[0].description %><br />
+             <b>Price:</b> &#8377;<%= search[0].price.toLocaleString("en-IN") %><br />
+             <b>Location:</b> <%= search[0].location %><br />
+             <b>Country:</b> <%= search[0].country %>
+            </p>
+          </div>
+        </div>
+      
+        <div class="btns">
+          <a
+            class="btn edit-btn btn-danger col-1 offset-3"
+            href="/listings/<%= search[0]._id %>/edit"
+            >Edit</a
+          >
+          <form method="post" action="/listings/<%=  search[0]._id %>?_method=DELETE">
+            <button class="btn btn-dark offset-4 delete-btn">Delete</button>
+          </form>
+        </div>
+</div>
+</div>

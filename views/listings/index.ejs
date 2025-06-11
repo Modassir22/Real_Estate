@@ -1,0 +1,133 @@
+<% layout("/layouts/boilerplate") -%>
+
+<!-- Nav AND lANDING -->
+<div class="main index">
+  <div class="main_quote">
+    <h1>My Estate!</h1>
+    <p>Navigate the lively Real Estate Encyclopedia</p>
+  </div>
+
+  <div class="main_bg">
+    <img src="./images/mainimage.png" alt="" />
+  </div>
+
+  
+    <form class="search" action="/listings/search" method="post">
+    <div class="first">
+      <h3>Location</h3>
+      <label for="one">Select Location</label>
+      <select name="location" id="one">
+        <option value="Bhilai">India</option>
+        <option value="Abu Dhabi">UAE</option>
+      </select>
+    </div>
+    <div class="second">
+      <h3>Property Type</h3>
+      <label for="two">Choose Property Type</label>
+      <select name="property" id="two">
+        <option value="Flat">Flat</option>
+        <option value="Room">Room</option>
+      </select>
+    </div>
+    <div class="third">
+      <h3>Price Range</h3>
+      <label for="three">Choose Price</label>
+      <select name="price" id="three">
+        <option value="1500000">1500000</option>
+        <option value="2500000">2500000</option>
+      </select>
+    </div>
+    <div class="fourth">
+      <button class="btn">Search</button>
+    </div>
+    </form>
+</div>
+
+
+<!-- Hero Section -->
+<div class="hero_section">
+  <div class="hero_section_container">
+    <img src="./images/image.jpg" alt="" />
+  </div>
+  <div class="hero_section_info">
+    <div class="hero_quote1">
+      <h3>
+        We've got new properties 
+        for everyone
+      </h3>
+      <p>One Place for everyone needs.</p>
+    </div>
+    <div class="hero_quote2">
+      <h5>600+ Apartments</h5>
+      <p>Explore stylish apartments for modern living.</p>
+    </div>
+    <div class="hero_quote3">
+      <h5>600+ Apartments</h5>
+      <p>Explore stylish apartments for modern living.</p>
+    </div>
+    <div class="hero_quote4">
+      <h5>600+ Apartments</h5>
+      <p>Explore stylish apartments for modern living.</p>
+    </div>
+    <div>
+      <button class="hero_section_btn btn">Explore</button>
+    </div>
+  </div>
+  
+  
+</div>
+<div class="p-all">
+<div class="section-title">
+  <span>Featured Properties</span>
+</div>
+<div class="p-name">
+  <% for(let info of data){ %>
+    <div class="p-name1">
+      <img class="img1" src="<%= info.image %>" alt="" />
+      <h3><%= info.propertyname %></h3>
+      <p class="para"><%= info.location %></p>
+      <div class="p-info">
+        <p>&#8377;<%= info.price.toLocaleString("en-IN") %></p>
+        <a href="/listings/<%= info._id %>">View Details</a>
+      </div>
+    </div>
+
+    <% } %>
+  <!-- <div class="p-name1">
+    <img class="img1" src="./images/IMAGE2.jpg" alt="" />
+    <h3>Amaze Seashore House</h3>
+    <p class="para">Location</p>
+    <div class="p-info">
+      <p>₹70 Lakhs</p>
+      <a href="">View Details</a>
+    </div>
+  </div>
+  <div class="p-name2">
+    <img class="img2" src="./images/image3.jpg" alt="" />
+    <h3>DRA Apartments</h3>
+    <p class="para">Location</p>
+    <div class="p-info">
+      <p>₹70 Lakhs</p>
+      <a href="">View Details</a>
+    </div>
+  </div>
+  <div class="p-name3">
+    <img class="img3" src="./images/image4.jpg" alt="" />
+    <h3>Voora villas</h3>
+    <p class="para">Location</p>
+    <div class="p-info">
+      <p>₹70Lakhs</p>
+      <a href="">View Details</a>
+    </div>
+  </div>
+  <div class="p-name3">
+    <img class="img3" src="./images/image4.jpg" alt="" />
+    <h3>Voora villas</h3>
+    <p class="para">Location</p>
+    <div class="p-info">
+      <p>₹70Lakhs</p>
+      <a href="">View Details</a>
+    </div>
+  </div> -->
+</div>
+</div>

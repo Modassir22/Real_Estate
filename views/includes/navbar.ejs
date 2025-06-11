@@ -1,0 +1,24 @@
+
+
+<div class="nav ">
+    <div class="logo">Property Street</div>
+    <div class="items">
+        <ul>
+            <li class="home"><a href="/">Home</a></li>
+            <li class="all-listing"><a href="/listings">All Listing</a></li>
+            <li class="about"><a href="/about">About</a></li>
+            <li class="new-listing"><a href="/listings/new">Add Property</a></li>
+        </ul>
+    </div>
+    <div class="login">
+        <% if(!currUser){ %>
+        <button class="nav_btn log-btn"><a style="text-decoration: none;color: black;" href="/login">Login</a></button>
+        <button class="nav_btn log-btn"><a style="text-decoration: none;color: black;" href="/signup">SignUp</a></button>
+        <% } %>
+        <% if(currUser){ %>
+        <button class="nav_btn logout"><a style="text-decoration: none;color: black;" href="/logout">Logout</a></button>
+        <% } %>
+    </div>
+</div>
+
+
