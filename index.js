@@ -1,3 +1,6 @@
+if(process.env.NODE_ENV != "production"){
+    require('dotenv').config()
+}
 const express = require("express");
 const app = express();
 const port = 8080;
@@ -10,6 +13,7 @@ const ExpressError = require("./utils/ExpressError.js");
 const wrapAsync = require("./utils/wrapAsync.js");
 const { listingSchema } = require("./schema.js");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -26,8 +30,22 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use("js", express.static(path.join(__dirname, "public/js")));
 
+let MongoUrl = process.env.MONGO_URI;
+
+const store = MongoStore.create({
+  mongoUrl:MongoUrl,
+  crypto:{
+    secret:process.env.SECRET
+  },
+  touchAfter: 24*3600,
+})
+
+store.on("error",()=>{
+  console.log("Error Occured in MONGO Store", err);
+})
+
 const sessionOption = {
-  secret: " mysecretkey",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -54,6 +72,7 @@ app.use((req, res, next) => {
   next();
 });
 
+
 const validateListing = (req, res, next) => {
   let { error } = listingSchema.validate(req.body);
   if (error) {
@@ -65,8 +84,9 @@ const validateListing = (req, res, next) => {
 };
 
 //DataBase connection
+
 async function main() {
-  mongoose.connect("mongodb://127.0.0.1:27017/RealEstate");
+  mongoose.connect(MongoUrl);
 }
 
 main()
